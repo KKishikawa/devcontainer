@@ -3,7 +3,7 @@ name: Build and Publish Docker Image
 on:
   push:
     tags:
-      - '*'
+      - "*"
 # tagのprefixをビルド対象のイメージとして扱い、-v以降をバージョンとして扱う
 # 例: vscode/fnm-v1.0.0 -> vscode/fnm 1.0.0
 # betaバージョンの場合は、バージョンにbetaを含める その場合、latestタグは付与されない
