@@ -1,6 +1,9 @@
 FROM mcr.microsoft.com/vscode/devcontainers/base:bookworm
-RUN apt -y update && apt -y upgrade && apt -y install curl
-RUN mkdir /workspaces && chown vscode:vscode /workspaces
+RUN apt -y update && \
+    apt -y upgrade && \
+    apt -y install curl
+RUN mkdir /workspaces && \
+    chown vscode:vscode /workspaces
 
 USER vscode
 ENV FNM_COREPACK_ENABLED=true
