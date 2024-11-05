@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           # Add image directories here!
-          - 'vscode/fnm'
+          - 'fnm'
 
 jobs:
   build_and_push:
@@ -23,8 +23,8 @@ jobs:
       - name: Parse Inputs
         id: parse_inputs
         run: |
-          if [[ ! -f ${{ github.event.inputs.directory }}/Dockerfile ]]; then
-            echo "Directory ${{ github.event.inputs.directory }} does not exist or does not contain a Dockerfile"
+          if [[ ! -f "src/${{ github.event.inputs.directory }}/Dockerfile" ]]; then
+            echo "Directory src/${{ github.event.inputs.directory }} does not exist or does not contain a Dockerfile"
             exit 1
           fi
           IS_BETA=0
@@ -56,7 +56,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ${{ steps.parse_inputs.outputs.IMAGE_NAME }}
+          context: "src/${{ github.event.inputs.directory }}"
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
