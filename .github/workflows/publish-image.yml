@@ -48,7 +48,7 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository_owner }}/${{ steps.parse_inputs.outputs.IMAGE_NAME }}
+          images: ghcr.io/${{ github.repository }}/${{ steps.parse_inputs.outputs.IMAGE_NAME }}
           tags: |
             type=raw,value=latest,enable=${{ steps.parse_inputs.outputs.IS_BETA == 0 }}
             type=raw,value=${{ steps.parse_inputs.outputs.IMAGE_VERSION }}
@@ -63,5 +63,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
       - name: Add Tag to GitHub
         run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
           git tag -a ${{ steps.parse_inputs.outputs.IMAGE_VERSION }} -m "$(if [[ ${{ steps.parse_inputs.outputs.IS_BETA }} == 1 ]]; then echo 'Beta '; fi)Release ${{ steps.parse_inputs.outputs.IMAGE_VERSION }}"
           git push origin ${{ steps.parse_inputs.outputs.IMAGE_VERSION }}
