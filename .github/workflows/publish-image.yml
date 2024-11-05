@@ -58,7 +58,7 @@ jobs:
             type=raw,value=${{ steps.parse_inputs.outputs.IMAGE_VERSION }}
             type=sha
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: "src/${{ github.event.inputs.directory }}"
           push: true
