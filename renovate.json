@@ -5,7 +5,7 @@
 		":timezone(Asia/Tokyo)",
 		":prHourlyLimitNone",
 		":automergeRequireAllStatusChecks",
-    "helpers:pinGitHubActionsDigests",
+    "helpers:pinGitHubActionDigests",
 		"schedule:weekends"
 	],
 	"dependencyDashboard": true
